@@ -1,0 +1,70 @@
+#  libfft2d Makefile.uk
+#
+#  Authors: George Muraru <murarugeorgec@gmail.com>
+#
+#  Copyright (c) 2020, Politehnica University of Bucharest. All rights reserved.
+#
+#  Redistribution and use in source and binary forms, with or without
+#  modification, are permitted provided that the following conditions
+#  are met:
+#
+#  1. Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#  2. Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in the
+#     documentation and/or other materials provided with the distribution.
+#  3. Neither the name of the copyright holder nor the names of its
+#     contributors may be used to endorse or promote products derived from
+#     this software without specific prior written permission.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+#  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#  POSSIBILITY OF SUCH DAMAGE.
+#
+#  THIS HEADER MAY NOT BE EXTRACTED OR MODIFIED IN ANY WAY.
+#
+
+$(eval $(call addlib_s,libfft2d,$(CONFIG_LIBFFT2D)))
+
+################################################################################
+# Sources
+################################################################################
+LIBFFT2D_URL=https://storage.googleapis.com/mirror.tensorflow.org/www.kurims.kyoto-u.ac.jp/~ooura/fft2d.tgz
+$(eval $(call fetch,libfft2d,$(LIBFFT2D_URL)))
+
+################################################################################
+# Helpers
+################################################################################
+LIBFFT2D_SUBDIR=fft2d
+LIBFFT2D_SRC=$(LIBFFT2D_ORIGIN)/$(LIBFFT2D_SUBDIR)
+
+################################################################################
+# Library includes
+################################################################################
+CXXINCLUDES-$(CONFIG_LIBFFT2D) += -I$(LIBFFT2D_SRC)/
+
+CINCLUDES-$(CONFIG_LIBFFT2D) += -I$(LIBFFT2D_SRC)/
+
+################################################################################
+# Library sources
+################################################################################
+LIBFFT2D_SRCS-y += $(LIBFFT2D_SRC)/shrtdct.c
+LIBFFT2D_SRCS-y += $(LIBFFT2D_SRC)/alloc.c
+
+LIBFFT2D_SRCS-y += $(LIBFFT2D_SRC)/fftsg.c
+
+ifdef CONFIG_LIBFFT2D_2D
+LIBFFT2D_SRCS-y += $(LIBFFT2D_SRC)/fftsg2d.c
+endif
+
+ifdef CONFIG_LIBFFT2D_3D
+LIBFFT2D_SRCS-y += $(LIBFFT2D_SRC)/fftsg3d.c
+endif

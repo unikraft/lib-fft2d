@@ -1,0 +1,22 @@
+menuconfig LIBFFT2D
+    bool "Fast Fourier Transform library"
+    select LIBUNWIND
+    select LIBCOMPILER-RT
+    select LIBCXX
+    select LIBCXXABI
+    select LIBNEWLIBC
+    select LIBPOSIX_SYSINFO
+    default n
+
+if LIBFFT2D
+    choice DIMENSION
+        prompt "DIMENSION"
+
+        config LIBFFT2D_1D
+            bool "1"
+        config LIBFFT2D_2D
+            bool "2"
+        config LIBFFT2D_3D
+            bool "3"
+    endchoice
+endif
