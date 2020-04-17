@@ -1,5 +1,5 @@
 menuconfig LIBFFT2D
-    bool "Fast Fourier Transform library"
+    bool "libff2td - Fast Fourier Transform library"
     select LIBUNWIND
     select LIBCOMPILER-RT
     select LIBCXX
@@ -11,6 +11,7 @@ menuconfig LIBFFT2D
 if LIBFFT2D
     choice DIMENSION
         prompt "DIMENSION"
+	default LIBFFT2D_2D
 
         config LIBFFT2D_1D
             bool "1"

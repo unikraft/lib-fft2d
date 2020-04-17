@@ -49,9 +49,15 @@ LIBFFT2D_SRC=$(LIBFFT2D_ORIGIN)/$(LIBFFT2D_SUBDIR)
 ################################################################################
 # Library includes
 ################################################################################
-CXXINCLUDES-$(CONFIG_LIBFFT2D) += -I$(LIBFFT2D_SRC)/
+CXXINCLUDES-$(CONFIG_LIBFFT2D) += -I$(LIBFFT2D_SRC)
+CINCLUDES-$(CONFIG_LIBFFT2D) += -I$(LIBFFT2D_SRC)
 
-CINCLUDES-$(CONFIG_LIBFFT2D) += -I$(LIBFFT2D_SRC)/
+################################################################################
+# Global flags
+################################################################################
+LIBFFT2D_SUPPRESS_FLAGS += -Wno-unused-parameter
+LIBFFT2D_CFLAGS-y += $(LIBFFT2D_SUPPRESS_FLAGS)
+LIBFFT2D_CXXFLAGS-y += $(LIBFFT2D_SUPPRESS_FLAGS)
 
 ################################################################################
 # Library sources
