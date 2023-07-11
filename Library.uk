@@ -1,0 +1,5 @@
+name        := "fft2d"
+description := "A general-purpose 2D,3D FFT (Fast Fourier Transform) library."
+homepage    := "http://www.kurims.kyoto-u.ac.jp/~ooura/fft.html"
+version     := 2006-12-28 sha256:ada7e99087c4ed477bfdf11413f2ba8db8a840ba9bbf8ac94f4f3972e2a7cec9 https://www.kurims.kyoto-u.ac.jp/~ooura/fft2d.tgz
+license     := "UNLICENSED"
